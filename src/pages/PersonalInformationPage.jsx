@@ -33,6 +33,7 @@ const PersonalInformationPage = () => {
                         value={personalDetails.name }
                         onChange={handleChange}
                         placeholder="First Name"
+                        required
                     />
                 </div>
                 <div className='input_group'>
@@ -44,6 +45,7 @@ const PersonalInformationPage = () => {
                         value={personalDetails.lastName}
                         onChange={handleChange}
                         placeholder="Last Name"
+                        required
                     />
                 </div>
                 <div className='input_group'>

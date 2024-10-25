@@ -18,7 +18,7 @@ const CVListPage = () => {
   }, []);
 
   const onClick = (formData) => {
-    navigate('/cv', { state: { formData } });
+    navigate(`/cv/${formData.cvId}`, /*{ state: { formData } }*/);
   }
 
   const handleDelete = (cvToDelete) => {
@@ -33,12 +33,17 @@ const CVListPage = () => {
   const filteredCVs = cvList.filter(cv => {
     const fullName = `${cv.personalDetails.name} ${cv.personalDetails.lastName}`.toLowerCase();
     const degree = cv.education.degree ? cv.education.degree.toLowerCase() : '';
-    const jobTitle = cv.experience.jobTitle ? cv.experience.jobTitle.toLowerCase() : '';
+    //const jobTitle = cv.experience.jobTitle ? cv.experience.jobTitle.toLowerCase() : '';
+      const jobTitleMatch = cv.experience.some(exp => 
+      exp.jobTitle ? exp.jobTitle.toLowerCase().includes(search.toLowerCase()) : false );
+    
+  console.log(jobTitleMatch);
   
     return (
       fullName.includes(search.toLowerCase()) || 
       degree.includes(search.toLowerCase()) || 
-      jobTitle.includes(search.toLowerCase())
+      //jobTitle.includes(search.toLowerCase())
+      jobTitleMatch
     );
   });
 

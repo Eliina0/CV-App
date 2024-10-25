@@ -1,31 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const formData = {
+    personalDetails: {},
+    education: {},
+    experience: []
+}
+
 const MultiStepForm = () => {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        personalDetails: {
-            name: '',
-            lastName: '',
-            birthdate: '',
-            email: '',
-            phone: '',
-            aboutMe: ''
-        },
-        education: {
-            degree: '',
-            institution: '',
-            duration: '',
-            description: '',
-        },
-        experience: [
-            { jobTitle: '', 
-              company: '', 
-              duration: '', 
-              description: '' 
-            }
-        ]
-    });
 
     const goToNextStep = () => {
         navigate('/personal-information', { state: { formData } });

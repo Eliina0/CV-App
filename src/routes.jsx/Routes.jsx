@@ -16,7 +16,7 @@ const Routes = () => {
         <Route path="/personal-information" element={<PersonalInformationPage />} />
         <Route path="/education" element={<EducationPage />} />
         <Route path="/experience" element={<ExperiencePage />} />
-        <Route path="/cv" element={<CVPage />} />
+        <Route path="/cv/:id" element={<CVPage />} />
     </ReactRouterRoutes>
   )
 }

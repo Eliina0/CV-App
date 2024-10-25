@@ -1,12 +1,24 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+
 
 const CVPage = () => {
-    const location = useLocation();
     const navigate = useNavigate();
-    const { formData } = location.state;
+    //const location = useLocation();
+    //const { formData } = location.state;
+    //const { personalDetails, education, experience } = formData;
 
-    const { personalDetails, education, experience } = formData;
+    const storedCVs = JSON.parse(localStorage.getItem('cvs'));
+    const { id } = useParams();
+    console.log(id);
+    console.log(Number(id));
+
+    const formData = storedCVs.find(cv => cv.cvId === Number(id)); 
+    const { personalDetails, education, experience} = formData;
+    //console.log(formData);
+    
+
+
 
     const handleButton = () => {
         navigate('/personal-information', { state: { formData } });
@@ -20,10 +32,17 @@ const CVPage = () => {
                 <div className="cv-section">
                     <h3 className="cv-section-title">Personal Information</h3>
                     <p><strong>Name:</strong> {personalDetails.name} {personalDetails.lastName}</p>
-                    <p><strong>Email:</strong> {personalDetails.email}</p>
-                    <p><strong>Phone:</strong> {personalDetails.phone}</p>
-                    {personalDetails?.address && (
-                        <p><strong>Address:</strong> {personalDetails.address}</p>
+                    {personalDetails?.email && (
+                        <p><strong>Email:</strong> {personalDetails.email}</p>
+                    )}
+                    {personalDetails?.phone && (
+                        <p><strong>Phone:</strong> {personalDetails.phone}</p>
+                    )}
+                    {personalDetails?.birthdate && (
+                        <p><strong>Birthdate:</strong> {personalDetails.birthdate}</p>
+                    )}
+                    {personalDetails?.aboutMe && (
+                        <p><strong>About Me:</strong> {personalDetails.aboutMe}</p>
                     )}
                 </div>
 
@@ -48,10 +67,18 @@ const CVPage = () => {
                     {experience && experience.length > 0 ? (
                         experience.map((exp, index) => (
                             <div key={index} className="cv-experience-entry">
-                                <p><strong>Job Title:</strong> {exp.jobTitle}</p>
-                                <p><strong>Company:</strong> {exp.company}</p>
-                                <p><strong>Duration:</strong> {exp.duration}</p>
-                                <p><strong>Description:</strong> {exp.description}</p>
+                                {exp?.jobTitle && (
+                                  <p><strong>Company:</strong> {exp.jobTitle}</p>
+                                )}
+                                {exp?.company && (
+                                  <p><strong>Company:</strong> {exp.company}</p>
+                                )}
+                                {exp?.duration && (
+                                  <p><strong>Duration:</strong> {exp.duration}</p>
+                                )}
+                                {exp?.description && (
+                                  <p><strong>Description:</strong> {exp.description}</p>
+                                )}
                                 <hr />
                             </div>
                         ))

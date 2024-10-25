@@ -38,7 +38,7 @@ const ExperiencePage = () => {
         }
 
         localStorage.setItem('cvs', JSON.stringify(allCVs));
-        navigate('/cv', { state: { formData: cvData } });
+        navigate(`/cv/${cvData.cvId}`, /*{ state: { formData: cvData } }*/);
     };
 
     const handleBack = () => {
