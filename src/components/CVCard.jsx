@@ -14,10 +14,15 @@ const CVCard = ({ cv, onClick, onDelete }) => {
         </p>
       )}
       
-      {experience?.jobTitle && experience?.company && (
-        <p>
-          Experience: {experience.jobTitle} at {experience.company}
-        </p>
+      {experience && experience.length > 0 && (
+        <div>
+          <h4>Experience:</h4>
+          {experience.map((exp, index) => (
+            <p key={index}>
+              {exp.jobTitle} at {exp.company}
+            </p>
+          ))}
+        </div>
       )}
       <button onClick={onDelete} className='delete_button'>Delete</button>
     </div>

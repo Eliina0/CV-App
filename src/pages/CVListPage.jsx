@@ -18,7 +18,7 @@ const CVListPage = () => {
   }, []);
 
   const onClick = (formData) => {
-    navigate('/personal-information', { state: { formData } });
+    navigate('/cv', { state: { formData } });
   }
 
   const handleDelete = (cvToDelete) => {

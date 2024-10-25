@@ -18,12 +18,13 @@ const MultiStepForm = () => {
             duration: '',
             description: '',
         },
-        experience: {
-            jobTitle: '',
-            company: '',
-            duration: '',
-            description: '',
-        }
+        experience: [
+            { jobTitle: '', 
+              company: '', 
+              duration: '', 
+              description: '' 
+            }
+        ]
     });
 
     const goToNextStep = () => {
